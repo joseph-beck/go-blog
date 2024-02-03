@@ -8,8 +8,8 @@ type Store struct {
 	DB *gorm.DB
 }
 
-func New(c Conn) Store {
-	return Store{
+func New(c Conn) *Store {
+	return &Store{
 		DB: c(),
 	}
 }
