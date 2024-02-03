@@ -1,0 +1,39 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "a realtime chatting and calling app",
+        "title": "Chit Chat",
+        "contact": {
+            "name": "Joseph Beck"
+        },
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/license/mit/"
+        },
+        "version": "0.1"
+    },
+    "host": "localhost:8080",
+    "basePath": "/",
+    "paths": {
+        "/api/v1/handler": {
+            "get": {
+                "description": "Mock handler",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "handlers"
+                ],
+                "summary": "Mock handler",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,26 @@
+basePath: /
+host: localhost:8080
+info:
+  contact:
+    name: Joseph Beck
+  description: a realtime chatting and calling app
+  license:
+    name: MIT
+    url: https://opensource.org/license/mit/
+  title: Chit Chat
+  version: "0.1"
+paths:
+  /api/v1/handler:
+    get:
+      description: Mock handler
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "500":
+          description: Internal Server Error
+      summary: Mock handler
+      tags:
+      - handlers
+swagger: "2.0"

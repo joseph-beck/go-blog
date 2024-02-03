@@ -3,13 +3,14 @@ GO ?= go
 GOFMT ?= gofmt "-s"
 GOFILES := $(shell find . -name "*.go")
 GOMODULES := $(shell go list ./...)
+SWAGMODULES := $(shell ls -d internal/*/)
 
 .phony: all
-all:
-	$(GO) run main.go
+all: swag
+	$(GO) run cmd/httpd/main.go
 
 .phony: build
-build:
+build: swag
 	$(GO) build -o build/program/app main.go
 
 .phony: clean
@@ -19,7 +20,7 @@ clean:
 
 .phony: swag
 swag:
-	$(SWAG) i --dir $(GOMODULES)
+	$(SWAG) init -g cmd/httpd/main.go --parseInternal -o docs/api/v1/
 
 .phony: fmt
 fmt:
