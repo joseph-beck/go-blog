@@ -10,9 +10,9 @@ info:
   title: Chit Chat
   version: "0.1"
 paths:
-  /api/v1/handler:
+  /api/v1/login:
     get:
-      description: Mock handler
+      description: Once "logged in" a users auth token will last for one hour
       produces:
       - application/json
       responses:
@@ -20,7 +20,7 @@ paths:
           description: OK
         "500":
           description: Internal Server Error
-      summary: Mock handler
+      summary: Login in a user and create a session
       tags:
-      - handlers
+      - users
 swagger: "2.0"

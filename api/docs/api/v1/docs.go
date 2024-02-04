@@ -21,16 +21,16 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/api/v1/handler": {
+        "/api/v1/login": {
             "get": {
-                "description": "Mock handler",
+                "description": "Once \"logged in\" a users auth token will last for one hour",
                 "produces": [
                     "application/json"
                 ],
                 "tags": [
-                    "handlers"
+                    "users"
                 ],
-                "summary": "Mock handler",
+                "summary": "Login in a user and create a session",
                 "responses": {
                     "200": {
                         "description": "OK"
