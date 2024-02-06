@@ -10,8 +10,10 @@ import (
 	"gorm.io/gorm/logger"
 )
 
+// Database connection function, returns a pointer to a database
 type Conn func() *gorm.DB
 
+// Return a connection to a postgres database
 func PgConn() Conn {
 	return func() *gorm.DB {
 		dsn := fmt.Sprintf(`
@@ -37,6 +39,8 @@ func PgConn() Conn {
 		return db
 	}
 }
+
+// Return a connection using to an sqlite database
 func SQLiteConn() Conn {
 	return func() *gorm.DB {
 		db, err := gorm.Open(sqlite.Open(os.Getenv("SQLITE_DB")), &gorm.Config{Logger: logger.Default.LogMode(logger.Silent)})

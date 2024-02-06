@@ -10,6 +10,7 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/joseph-beck/chit-chat/api/internal/cache"
 	"github.com/joseph-beck/chit-chat/api/internal/database"
+	"github.com/joseph-beck/chit-chat/api/internal/models"
 )
 
 type Config struct {
@@ -49,6 +50,11 @@ func New(a ...Config) App {
 }
 
 func (a *App) Run() {
+	err := a.Store.AutoMigrate(models.User{}, models.Message{})
+	if err != nil {
+		panic(err)
+	}
+
 	a.Fiber.Use(cors.New(cors.Config{
 		AllowOriginsFunc: func(origin string) bool {
 			return os.Getenv("ENVIRONMENT") == "development"
