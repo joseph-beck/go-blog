@@ -3,6 +3,7 @@ package models
 type Post struct {
 	Model
 	BlogRefer   uint   `json:"blogRefer"`
+	Blog        Blog   `gorm:"foreignKey:BlogRefer" json:"blog"`
 	AuthorRefer uint   `json:"authorRefer"`
 	Author      Author `gorm:"foreignKey:AuthorRefer" json:"author"`
 

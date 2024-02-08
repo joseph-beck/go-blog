@@ -16,8 +16,8 @@ func ListBlog() fiber.Handler {
 
 func GetBlog(s *database.Store) fiber.Handler {
 	type Response struct {
-		Blog  models.Blog
-		Posts []models.Post
+		Blog  models.Blog   `json:"blog"`
+		Posts []models.Post `json:"posts"`
 	}
 
 	return func(c *fiber.Ctx) error {
@@ -29,7 +29,7 @@ func GetBlog(s *database.Store) fiber.Handler {
 		r := Response{}
 		r.Blog = models.Blog{Model: models.Model{ID: uint(b)}}
 
-		err = s.Get(&r.Blog, "blogs")
+		err = s.DB.Table("blogs").Preload("Author").Find(&r.Blog).Error
 		if err != nil {
 			return c.SendStatus(http.StatusBadRequest)
 		}

@@ -42,7 +42,7 @@ func GetPost(s *database.Store) fiber.Handler {
 		}
 
 		var p models.Post
-		err = s.DB.Table("posts").Preload("Author").Find(&p).Where("blog_refer = ?", b).Where("author_refer = ?", a).Error
+		err = s.DB.Table("posts").Preload("Author").Preload("Blog").Find(&p).Where("blog_refer = ?", b).Where("author_refer = ?", a).Error
 		if err != nil {
 			return c.SendStatus(http.StatusBadRequest)
 		}
