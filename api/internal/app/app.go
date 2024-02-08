@@ -50,7 +50,7 @@ func New(a ...Config) App {
 }
 
 func (a *App) Run() {
-	err := a.Store.AutoMigrate(models.User{}, models.Message{})
+	err := a.Store.AutoMigrate(models.User{})
 	if err != nil {
 		panic(err)
 	}
