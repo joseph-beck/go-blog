@@ -1,5 +1,15 @@
 package models
 
+type State int
+
+const (
+	Unknown State = iota // 0
+	Online               // 1
+	Away                 // 2
+	Busy                 // 3
+	Offline              // 4
+)
+
 type Author struct {
 	Model
 	Username string `gorm:"type:varchar(25);unique;not null" json:"username"`              // username of the author, must be unique
