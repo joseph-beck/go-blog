@@ -10,6 +10,7 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/joseph-beck/chit-chat/api/internal/cache"
 	"github.com/joseph-beck/chit-chat/api/internal/database"
+	"github.com/joseph-beck/chit-chat/api/internal/handlers"
 	"github.com/joseph-beck/chit-chat/api/internal/models"
 )
 
@@ -50,7 +51,9 @@ func New(a ...Config) App {
 }
 
 func (a *App) Run() {
-	err := a.Store.AutoMigrate(models.User{})
+	log.Println("running app")
+
+	err := a.Store.AutoMigrate(models.User{}, models.Author{}, models.Blog{}, models.Post{})
 	if err != nil {
 		panic(err)
 	}
@@ -65,14 +68,20 @@ func (a *App) Run() {
 		BasePath: "/api/v1/",
 		FilePath: "./docs/api/v1/swagger.json",
 		Path:     "docs",
-		Title:    "chit chat docs",
+		Title:    "go blog docs",
 	}))
 
 	a.Fiber.Use(logger.New())
+
+	a.Fiber.Get("/api/v1/posts", handlers.ListPost(a.Store))
+
+	a.Fiber.Get("/api/v1/posts/:blog/:author", handlers.GetPost(a.Store))
+
+	a.Fiber.Get("/api/v1/blogs/:blog", handlers.GetBlog(a.Store))
 
 	log.Fatalln(a.Fiber.Listen(a.Config.Port))
 }
 
 func (a *App) Close() {
-
+	log.Println("closing app")
 }

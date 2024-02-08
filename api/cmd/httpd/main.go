@@ -1,6 +1,9 @@
 package main
 
-import "github.com/joseph-beck/chit-chat/api/internal/app"
+import (
+	"github.com/joho/godotenv"
+	"github.com/joseph-beck/chit-chat/api/internal/app"
+)
 
 //	@title			Chit Chat
 //	@version		0.1
@@ -17,4 +20,11 @@ func main() {
 	a := app.New()
 	a.Run()
 	a.Close()
+}
+
+func init() {
+	err := godotenv.Load()
+	if err != nil {
+		panic(err)
+	}
 }
