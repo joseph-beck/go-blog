@@ -21,14 +21,10 @@ const (
 	Owner               // 3
 )
 
-type User struct {
+type Credentials struct {
 	Model
-	Username string `gorm:"type:varchar(25);unique;not null" json:"username"`              // username of the user, must be unique
-	Name     string `gorm:"type:varchar(25);not null" json:"name"`                         // name of the user, can be a duplicate name
-	Email    Email  `gorm:"type:varchar(100);unique;not null;unique_index" json:"email"`   // email of user, may require more validation
-	Password string `gorm:"type:varchar(64);not null" json:"password"`                     // stored with a SHA256
-	State    State  `gorm:"type:integer;check:(State >= 0) and (State <= 4)" json:"state"` // state of the user, are they online etc?
-	Role     Role   `gorm:"type:integer;check:(Role >= 0) and (Role <= 3)" json:"role"`    // role of the user, used for user access levels
-	Status   string `gorm:"type:varchar(50)" json:"status"`                                // the current status of the user, a small message
-	About    string `gorm:"type:varchar(255)" json:"about"`                                // about the user, a larger body of text
+	Username string `gorm:"type:varchar(25);unique;not null" json:"username"`            // username of the user, must be unique
+	Name     string `gorm:"type:varchar(25);not null" json:"name"`                       // name of the user, can be a duplicate name
+	Email    Email  `gorm:"type:varchar(100);unique;not null;unique_index" json:"email"` // email of user, may require more validation
+	Password string `gorm:"type:varchar(64);not null" json:"password"`                   // stored with a SHA256
 }

@@ -53,7 +53,7 @@ func New(a ...Config) App {
 func (a *App) Run() {
 	log.Println("running app")
 
-	err := a.Store.AutoMigrate(models.User{}, models.Author{}, models.Blog{}, models.Post{})
+	err := a.Store.AutoMigrate(models.Credentials{}, models.Author{}, models.Blog{}, models.Post{})
 	if err != nil {
 		panic(err)
 	}
