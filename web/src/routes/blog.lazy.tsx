@@ -1,6 +1,6 @@
 import { createLazyFileRoute } from '@tanstack/react-router'
 import * as React from 'react'
-import { BlogPage } from '../components/BlogPage';
+import { BlogPage } from '../components/blog-page';
 import { Post } from '../types/post';
 import { Blog } from '../types/blog';
 

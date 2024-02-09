@@ -1,7 +1,7 @@
 import { Blog } from "../types/blog";
 import { Post } from "../types/post";
-import { BlogAuthor } from "./BlogAuthor";
-import { BlogPost } from "./BlogPost";
+import { BlogAuthor } from "./blog-author";
+import { BlogPost } from "./blog-post";
 
 type props = {
   blog: Blog;
