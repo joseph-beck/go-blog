@@ -1,13 +1,11 @@
 import * as React from 'react';
 import { createLazyFileRoute } from '@tanstack/react-router';
 import { BlogPage } from '../components/page/blog-page';
-import { Post } from '../types/post';
 import { Blog } from '../types/blog';
-import { Page404 } from '../components/error/404';
+import { Post } from '../types/post';
 
-export const Route = createLazyFileRoute('/blog')({
-  component: Page,
-  errorComponent: Page404
+export const Route = createLazyFileRoute('/blog/$blogId')({
+  component: Page
 });
 
 type Response = {
@@ -16,11 +14,12 @@ type Response = {
 };
 
 function Page() {
+  const { blogId } = Route.useParams()
   const [data, setData] = React.useState<Response>();
 
   const fetchData = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/api/v1/blogs/1`);
+      const response = await fetch(`http://localhost:8080/api/v1/blogs/${blogId}`);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }

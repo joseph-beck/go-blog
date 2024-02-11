@@ -1,4 +1,4 @@
-import { Author } from "../types/author";
+import { Author } from "../../types/author";
 
 type props = {
   author: Author;
