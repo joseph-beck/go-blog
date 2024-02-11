@@ -34,7 +34,7 @@ func GetBlog(s *database.Store) fiber.Handler {
 			return c.SendStatus(http.StatusBadRequest)
 		}
 
-		err = s.DB.Table("posts").Preload("Author").Find(&r.Posts).Where("blog_refer = ?", b).Error
+		err = s.DB.Table("posts").Preload("Author").Where("blog_refer = ?", b).Find(&r.Posts).Error
 		if err != nil {
 			return c.SendStatus(http.StatusBadRequest)
 		}
