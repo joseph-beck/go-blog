@@ -75,7 +75,7 @@ func (a *App) Run() {
 
 	a.Fiber.Get("/api/v1/posts", handlers.ListPost(a.Store))
 
-	a.Fiber.Get("/api/v1/posts/:blog/:author", handlers.GetPost(a.Store))
+	a.Fiber.Get("/api/v1/posts/:blog/:post", handlers.GetPost(a.Store))
 
 	a.Fiber.Get("/api/v1/blogs/:blog", handlers.GetBlog(a.Store))
 

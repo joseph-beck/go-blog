@@ -36,13 +36,13 @@ func GetPost(s *database.Store) fiber.Handler {
 		if err != nil {
 			return c.SendStatus(http.StatusBadRequest)
 		}
-		a, err := c.ParamsInt("author")
+		a, err := c.ParamsInt("post")
 		if err != nil {
 			return c.SendStatus(http.StatusBadRequest)
 		}
 
 		var p models.Post
-		err = s.DB.Table("posts").Preload("Author").Preload("Blog").Where("blog_refer = ?", b).Where("author_refer = ?", a).Find(&p).Error
+		err = s.DB.Table("posts").Preload("Author").Preload("Blog").Where("blog_refer = ?", b).Where("id = ?", a).Find(&p).Error
 		if err != nil {
 			return c.SendStatus(http.StatusBadRequest)
 		}
