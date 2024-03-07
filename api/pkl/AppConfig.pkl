@@ -1,0 +1,32 @@
+@go.Package { name = "github.com/joseph-beck/go-blog/api/pkl/AppConfig" }
+module api.pkl.AppConfig
+
+import "package://pkg.pkl-lang.org/pkl-go/pkl.golang@0.5.0#/go.pkl"
+
+typealias Port = UInt16(this > 0)
+
+class PgDatabase {
+    address: String
+
+    user: String
+
+    password: String
+
+    database: String
+
+    port: Port
+}
+
+class Redis {
+    address: String
+
+    username: String
+
+    password: String
+}
+
+sqliteDb: String
+
+typealias Environment = "development"|"production"
+
+environment: Environment

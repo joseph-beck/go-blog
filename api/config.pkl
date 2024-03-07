@@ -1,0 +1,25 @@
+amends "pkl/AppConfig.pkl"
+
+PgDatabase {
+    address = read("env:PG_ADDR")
+
+    username = read("env:PG_USER")
+
+    password = read("env:PG_PASS")
+
+    database = read("env:PG_NAME")
+
+    port = read("env:PG_PORT")
+}
+
+Redis {
+    address = read("env:REDIS_ADDR")
+
+    username = "default"
+
+    password = read("env:REDIS_PASS")
+}
+
+sqliteDb = read("env:SQLITE_DB")
+
+environment = "development"
